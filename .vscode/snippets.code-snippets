@@ -1,0 +1,99 @@
+{
+	"Create GraphQL": {
+	  "prefix": "gql",
+	  "body": [
+		"import gql from 'graphql-tag';",
+		"",
+		"export default gql`",
+		"  ${1|query,mutation|} ${TM_FILENAME_BASE}($2) {",
+		"    ${TM_FILENAME_BASE}($3)",
+		"  }",
+		"`;"
+	  ]
+	},
+	"Create useQuery hook": {
+	  "prefix": "useQuery",
+	  "body": [
+		"import { useQuery } from '@apollo/react-hooks';",
+		"import { get } from 'lodash/fp';",
+		"import { Query } from '../graphqlTypes';",
+		"import $1 from './gql/$2';",
+		"",
+		"const ${TM_FILENAME_BASE} = () => {",
+		"  const { data, ...rest } = useQuery<Pick<Query, '$2'>, null>(",
+		"    $1,",
+		"    {",
+		"      fetchPolicy: '$3',",
+		"    },",
+		"  );",
+		"",
+		"  return {",
+		"    data: get('$2', data),",
+		"    ...rest,",
+		"  };",
+		"};",
+		"",
+		"export default ${TM_FILENAME_BASE};"
+	  ]
+	},
+	"Create useLazyQuery hook": {
+	  "prefix": "useLazyQuery",
+	  "body": [
+		"import { useLazyQuery } from '@apollo/react-hooks';",
+		"import { get } from 'lodash/fp';",
+		"import { Query, $1 } from '../graphqlTypes';",
+		"import $2 from './gql/$3';",
+		"",
+		"const ${TM_FILENAME_BASE} = () => {",
+		"  const [query, { data, ...rest }] = useLazyQuery<",
+		"    Pick<Query, '$3'>,",
+		"    $1",
+		"  >($2);",
+		"",
+		"  const $3 = (variables: $1): void => {",
+		"    query({ variables });",
+		"  };",
+		"",
+		"  return [",
+		"    $3,",
+		"    {",
+		"      data: get('$3', data),",
+		"      ...rest,",
+		"    },",
+		"  ] as const;",
+		"};",
+		"",
+		"export default ${TM_FILENAME_BASE};"
+	  ]
+	},
+	"Create useMutation hook": {
+	  "prefix": "useMutation",
+	  "body": [
+		"import { useMutation } from '@apollo/react-hooks';",
+		"import { get } from 'lodash/fp';",
+		"import { Mutation, $1 } from '../graphqlTypes';",
+		"import $2 from './gql/$3';",
+		"",
+		"const ${TM_FILENAME_BASE} = () => {",
+		"  const [mutation, { data, ...rest }] = useMutation<",
+		"    Pick<Mutation, '$3'>,",
+		"    $1",
+		"  >($2);",
+		"",
+		"  const $3 = (variables: $1) =>",
+		"    mutation({ variables });",
+		"",
+		"  return [",
+		"    $3,",
+		"    {",
+		"      data: get('$3', data),",
+		"      ...rest,",
+		"    },",
+		"  ] as const;",
+		"};",
+		"",
+		"export default ${TM_FILENAME_BASE};"
+	  ]
+	},
+}
+  

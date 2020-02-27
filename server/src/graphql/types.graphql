@@ -1,0 +1,11 @@
+type List {
+  id: UUID!
+  name: String!
+  tasks: [Task!]!
+}
+
+type Task {
+  id: UUID!
+  name: String!
+  priority: Priority
+}

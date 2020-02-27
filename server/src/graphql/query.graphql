@@ -1,0 +1,4 @@
+type Query {
+  getLists: [List!]!
+  getTasks(listId: UUID!): [Task!]!
+}

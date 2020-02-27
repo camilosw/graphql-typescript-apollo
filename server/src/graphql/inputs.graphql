@@ -1,0 +1,5 @@
+input TaskCreateInput {
+  listId: UUID!
+  name: String!
+  priority: Priority
+}

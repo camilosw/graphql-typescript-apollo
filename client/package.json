@@ -1,0 +1,53 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "gql:types": "graphql-codegen --config codegen.json && prettier --write src/graphqlTypes.ts",
+    "gql:types-url": "node -r esm scripts/graphqlCodegenUrl.js && prettier --write src/graphqlTypes.ts",
+    "gql:types-path": "node -r esm scripts/graphqlCodegenPath.js && prettier --write src/graphqlTypes.ts"
+  },
+  "dependencies": {
+    "@apollo/react-hooks": "3.1.3",
+    "@graphql-codegen/cli": "1.12.2",
+    "@graphql-codegen/typescript": "1.12.2",
+    "@graphql-toolkit/url-loader": "0.9.7",
+    "@testing-library/jest-dom": "4.2.4",
+    "@testing-library/react": "9.4.1",
+    "@testing-library/user-event": "7.2.1",
+    "@types/jest": "24.9.1",
+    "@types/lodash": "4.14.149",
+    "@types/node": "12.12.28",
+    "@types/react": "16.9.23",
+    "@types/react-dom": "16.9.5",
+    "apollo-cache-inmemory": "1.6.5",
+    "apollo-client": "2.6.8",
+    "apollo-link-http": "1.5.16",
+    "esm": "3.2.25",
+    "graphql": "14.6.0",
+    "graphql-tag": "2.10.3",
+    "lodash": "4.17.15",
+    "prettier": "1.19.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.4.0",
+    "typescript": "3.7.5"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
